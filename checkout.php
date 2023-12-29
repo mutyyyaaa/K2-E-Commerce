@@ -79,6 +79,25 @@ class CheckoutPage {
         <?php
     }
 }
+// Kelas untuk mengelola proses pemesanan
+class ProsesOrder {
+    private $koneksi;
+
+    public function __construct($db) {
+        $this->koneksi = $db;
+    }
+
+    public function prosesOrder($nama, $alamat, $hp, $email, $totalBelanja, $metodePembayaran) {
+        // Lakukan proses penyimpanan order ke database atau lakukan operasi lainnya sesuai kebutuhan
+        $query = "INSERT INTO tb_pesanan (nama, alamat, hp, email, total_belanja, metode_pembayaran) VALUES ('$nama', '$alamat', '$hp', '$email', '$totalBelanja', '$metodePembayaran')";
+        
+        if (mysqli_query($this->koneksi, $query)) {
+            return true; // Return true jika proses penyimpanan berhasil
+        } else {
+            return false; // Return false jika terjadi kesalahan saat penyimpanan
+        }
+    }
+}
 
 // Koneksi ke database
 include('koneksi.php');
